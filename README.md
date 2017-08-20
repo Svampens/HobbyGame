@@ -1,2 +1,2 @@
 # HobbyGame
-Just another hobby game project made in the Godot game engine
+Just another hobby game project made by me in the Godot game engine
