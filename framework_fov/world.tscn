@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=3]
+[ext_resource path="res://textures/tileset/tileset.xml" type="TileSet" id=4]
+[ext_resource path="res://scripts/map.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 30, 30 )
+
+[node name="world" type="Node2D"]
+
+[node name="player" type="RigidBody2D" parent="."]
+
+transform/pos = Vector2( 350, 160 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 2
+mass = 1.0
+friction = 0.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+speed = 400
+
+[node name="sprite" type="Sprite" parent="player"]
+
+visibility/light_mask = 0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="camera" type="Camera2D" parent="player"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+max_offset = 400.0
+min_offset = 50.0
+damp_factor = 0.5
+
+[node name="map" type="TileMap" parent="."]
+
+visibility/light_mask = 2
+z/z = -1
+mode = 0
+tile_set = ExtResource( 4 )
+cell/size = Vector2( 32, 32 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = true
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65541, 8, 65542, 8, 65543, 8, 65544, 8, 65545, 8, 65546, 8, 65547, 8, 65548, 8, 65549, 8, 65550, 8, 65551, 8, 65552, 8, 65553, 8, 65554, 8, 65555, 8, 65556, 8, 131077, 8, 131078, 9, 131079, 9, 131080, 9, 131081, 9, 131082, 9, 131083, 9, 131084, 9, 131085, 9, 131086, 9, 131087, 9, 131088, 9, 131089, 9, 131090, 9, 131091, 9, 131092, 8, 196613, 8, 196614, 9, 196615, 9, 196616, 9, 196617, 9, 196618, 9, 196619, 9, 196620, 9, 196621, 9, 196622, 9, 196623, 9, 196624, 9, 196625, 9, 196626, 9, 196627, 9, 196628, 8, 262149, 8, 262150, 9, 262151, 9, 262152, 9, 262153, 9, 262154, 9, 262155, 9, 262156, 9, 262157, 9, 262158, 9, 262159, 8, 262160, 8, 262161, 8, 262162, 9, 262163, 9, 262164, 8, 327685, 8, 327686, 9, 327687, 9, 327688, 9, 327689, 9, 327690, 9, 327691, 9, 327692, 9, 327693, 9, 327694, 9, 327695, 8, 327697, 8, 327698, 9, 327699, 9, 327700, 8, 393221, 8, 393222, 9, 393223, 9, 393224, 9, 393225, 9, 393226, 9, 393227, 9, 393228, 9, 393229, 9, 393230, 9, 393231, 8, 393232, 8, 393233, 8, 393234, 9, 393235, 9, 393236, 8, 458757, 8, 458758, 9, 458759, 9, 458760, 9, 458761, 9, 458762, 9, 458763, 9, 458764, 9, 458765, 9, 458766, 9, 458767, 9, 458768, 9, 458769, 9, 458770, 9, 458771, 9, 458772, 8, 524293, 8, 524294, 9, 524295, 9, 524296, 9, 524297, 9, 524298, 9, 524299, 9, 524300, 9, 524301, 9, 524302, 9, 524303, 9, 524304, 9, 524305, 9, 524306, 9, 524307, 9, 524308, 8, 589829, 8, 589830, 9, 589831, 9, 589832, 9, 589833, 9, 589834, 9, 589835, 9, 589836, 9, 589837, 9, 589838, 9, 589839, 9, 589840, 9, 589841, 9, 589842, 9, 589843, 9, 589844, 8, 655365, 8, 655366, 8, 655367, 8, 655368, 8, 655369, 8, 655370, 8, 655371, 8, 655372, 8, 655373, 8, 655374, 8, 655375, 8, 655376, 8, 655377, 8, 655378, 8, 655379, 8, 655380, 8 )
+script/script = ExtResource( 5 )
+pixels_per_tile = 32
+
+
